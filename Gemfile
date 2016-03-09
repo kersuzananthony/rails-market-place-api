@@ -42,7 +42,7 @@ group :test do
   gem 'rspec-rails', '~> 2.14'
   gem 'factory_girl_rails'
   gem 'ffaker'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '2.5.0', require: false
 end
 
 group :development, :test do
