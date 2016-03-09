@@ -31,7 +31,10 @@ describe Api::V1::UsersController do
         expect(user_response[:email]).to eql @user_attributes[:email]
       end
 
-      it { should respond_with 201 }
+      it 'should return a 201 response status' do
+        expect(response.status).to eql 201
+      end
+
     end
 
     context 'when is not created' do
@@ -52,7 +55,9 @@ describe Api::V1::UsersController do
         expect(user_response[:errors][:email]).to include 'can\'t be blank'
       end
 
-      it { should respond_with 422 }
+      it 'should return a 422 response status' do
+        expect(response.status).to eql 422
+      end
     end
   end
 end
