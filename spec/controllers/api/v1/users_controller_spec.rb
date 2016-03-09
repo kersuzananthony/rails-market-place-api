@@ -60,4 +60,57 @@ describe Api::V1::UsersController do
       end
     end
   end
+
+  describe 'PATCH #update' do
+    context 'When user is successfully updated' do
+      before(:each) do
+        @user = FactoryGirl.create(:user)
+        patch :update, { id: @user.id, user: { email: 'newemail@marketplace.com' } }, format: :json
+      end
+
+      it 'renders the JSON representation of the updated user' do
+        user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(user_response[:email]).to eql 'newemail@marketplace.com'
+      end
+
+      it 'should return a 200 response status' do
+        expect(response.status).to eql 200
+      end
+
+    end
+
+    context 'When user is not updated' do
+      before(:each) do
+        @user = FactoryGirl.create(:user)
+        patch :update, { id: @user.id, user: { email: 'bademail.com' }}, format: :json
+      end
+
+      it 'renders an error json' do
+        user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(user_response).to have_key(:errors)
+      end
+
+      it 'renders the error json explaining why user was not created' do
+        user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(user_response[:errors][:email]).to include 'is invalid'
+      end
+
+      it 'should return a 422 response status' do
+        expect(response.status).to eql 422
+      end
+
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      delete :destroy, { id: @user.id }, format: :json
+    end
+
+    it 'should return a 204 response status' do
+      expect(response.status).to eql 204
+    end
+  end
+
 end
