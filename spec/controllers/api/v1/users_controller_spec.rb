@@ -9,8 +9,7 @@ describe Api::V1::UsersController do
     end
 
     it 'returns the information about a reporter on a hash' do
-      user_response = json_response
-      expect(user_response[:email]).to eql @user.email
+      expect(json_response[:email]).to eql @user.email
     end
 
     it 'shoud return a response status equals to 200' do
@@ -26,8 +25,7 @@ describe Api::V1::UsersController do
       end
 
       it 'renders the json representation for the user record just created' do
-        user_response = json_response
-        expect(user_response[:email]).to eql @user_attributes[:email]
+        expect(json_response[:email]).to eql @user_attributes[:email]
       end
 
       it 'should return a 201 response status' do
@@ -45,13 +43,11 @@ describe Api::V1::UsersController do
       end
 
       it 'renders an errors json' do
-        user_response = json_response
-        expect(user_response).to have_key(:errors)
+        expect(json_response).to have_key(:errors)
       end
 
       it 'renders the json errors on why the user could not be created' do
-        user_response = json_response
-        expect(user_response[:errors][:email]).to include 'can\'t be blank'
+        expect(json_response[:errors][:email]).to include 'can\'t be blank'
       end
 
       it 'should return a 422 response status' do
@@ -68,8 +64,7 @@ describe Api::V1::UsersController do
       end
 
       it 'renders the JSON representation of the updated user' do
-        user_response = json_response
-        expect(user_response[:email]).to eql 'newemail@marketplace.com'
+        expect(json_response[:email]).to eql 'newemail@marketplace.com'
       end
 
       it 'should return a 200 response status' do
@@ -85,13 +80,11 @@ describe Api::V1::UsersController do
       end
 
       it 'renders an error json' do
-        user_response = json_response
-        expect(user_response).to have_key(:errors)
+        expect(json_response).to have_key(:errors)
       end
 
       it 'renders the error json explaining why user was not created' do
-        user_response = json_response
-        expect(user_response[:errors][:email]).to include 'is invalid'
+        expect(json_response[:errors][:email]).to include 'is invalid'
       end
 
       it 'should return a 422 response status' do
