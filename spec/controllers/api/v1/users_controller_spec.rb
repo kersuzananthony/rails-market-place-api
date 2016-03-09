@@ -10,7 +10,7 @@ describe Api::V1::UsersController do
     end
 
     it 'returns the information about a reporter on a hash' do
-      user_response = JSON.parse(response.body, symbolize_names: true)
+      user_response = json_response
       expect(user_response[:email]).to eql @user.email
     end
 
@@ -27,7 +27,7 @@ describe Api::V1::UsersController do
       end
 
       it 'renders the json representation for the user record just created' do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:email]).to eql @user_attributes[:email]
       end
 
@@ -46,12 +46,12 @@ describe Api::V1::UsersController do
       end
 
       it 'renders an errors json' do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response).to have_key(:errors)
       end
 
       it 'renders the json errors on why the user could not be created' do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:errors][:email]).to include 'can\'t be blank'
       end
 
@@ -69,7 +69,7 @@ describe Api::V1::UsersController do
       end
 
       it 'renders the JSON representation of the updated user' do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:email]).to eql 'newemail@marketplace.com'
       end
 
@@ -86,12 +86,12 @@ describe Api::V1::UsersController do
       end
 
       it 'renders an error json' do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response).to have_key(:errors)
       end
 
       it 'renders the error json explaining why user was not created' do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:errors][:email]).to include 'is invalid'
       end
 

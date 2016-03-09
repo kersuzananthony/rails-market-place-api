@@ -58,4 +58,7 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/v/3-0/docs
   config.infer_spec_type_from_file_location!
+
+  # Include the test request on every controller test file
+  config.include Request::JsonHelpers, :type => :controller
 end

@@ -23,6 +23,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # User authentication
 gem 'devise'
 
+# Gem for using API
+gem 'sabisu_rails', github: 'IcaliaLabs/sabisu-rails'
+gem 'furatto', github: 'IcaliaLabs/furatto-rails'
+gem 'font-awesome-rails'
+gem 'simple_form'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
