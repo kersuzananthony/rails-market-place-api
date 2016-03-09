@@ -36,7 +36,23 @@ describe Api::V1::SessionsController do
       it { should respond_with(422) }
 
     end
+  end
 
+  describe 'DELETE#destroy' do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+      delete :destroy, id: @user.auth_token
+    end
+
+    it 'should change the user auth_token' do
+      old_token = @user.auth_token
+      @user.reload
+      new_token = @user.auth_token
+      expect(old_token).not_to eql new_token
+    end
+
+    it { should respond_with(204) }
   end
 
 end
