@@ -40,8 +40,6 @@ gem 'simple_form'
 
 group :test do
   gem 'rspec-rails', '~> 2.14'
-  gem 'factory_girl_rails'
-  gem 'ffaker'
   gem 'shoulda-matchers', '2.5.0', require: false
 end
 
@@ -50,6 +48,9 @@ group :development, :test do
   gem 'byebug'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+
+  gem 'factory_girl_rails'
+  gem 'ffaker'
 end
 
 group :development do
