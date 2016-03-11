@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   # Validation
   validates :auth_token, uniqueness: true
 
+  # Association
+  has_many :products, dependent: :destroy
+
   # Before create
   before_create :generate_authentication_token!
 

@@ -5,14 +5,18 @@ describe User do
 
   subject { @user }
 
+  # Test attributes
   it { should respond_to(:email) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:auth_token) }
 
+  # Test validation
   it { should validate_uniqueness_of(:auth_token)}
-
   it { should be_valid }
+
+  # Association
+  it { should have_many :products }
 
   describe "when email is not present" do
     before { @user.email = " " }
@@ -32,4 +36,24 @@ describe User do
       expect(@user.auth_token).not_to eql existing_user.auth_token
     end
   end
+
+  # Test destroy dependency when user is deleted
+  describe '#products association'  do
+    before(:each) do
+      @user.save
+      3.times do
+        FactoryGirl.create :product, user: @user
+      end
+    end
+
+    it 'destroys the associated products when self destroyed' do
+      products = @user.products
+      @user.destroy
+      products.each do |product|
+        expect(Product.find(product)).to raise_error ActiveRecord::RecordNotFound
+      end
+    end
+
+  end
+
 end
