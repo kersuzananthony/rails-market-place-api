@@ -16,6 +16,12 @@ describe Api::V1::UsersController do
     it 'shoud return a response status equals to 200' do
       expect(response.status).to eql 200
     end
+
+    it 'has products ids has embed object' do
+      user_response = json_response[:user]
+      expect(user_response[:product_ids]).to eql []
+    end
+
   end
 
   describe 'POST #create' do
