@@ -11,6 +11,7 @@ describe Api::V1::ProductsController do
     it 'return the information of an article to a hash' do
       product_response = json_response[:product]
       expect(product_response[:title]).to eql @product.title
+      expect(product_response[:user][:email]).to eql @product.user.email
     end
 
     it { should respond_with 200 }
@@ -25,7 +26,11 @@ describe Api::V1::ProductsController do
     end
 
     it 'returns 4 records from the database' do
-      expect(json_response[:products]).to have(4).items
+      products_response = json_response[:products]
+      expect(products_response).to have(4).items
+      products_response.each do |product_response|
+        expect(product_response[:user]).to be_present
+      end
     end
 
     it { should respond_with 200 }
