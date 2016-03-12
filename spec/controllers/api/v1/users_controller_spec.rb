@@ -9,7 +9,8 @@ describe Api::V1::UsersController do
     end
 
     it 'returns the information about a reporter on a hash' do
-      expect(json_response[:email]).to eql @user.email
+      user_response = json_response[:user]
+      expect(user_response[:email]).to eql @user.email
     end
 
     it 'shoud return a response status equals to 200' do
@@ -25,7 +26,8 @@ describe Api::V1::UsersController do
       end
 
       it 'renders the json representation for the user record just created' do
-        expect(json_response[:email]).to eql @user_attributes[:email]
+        user_response  = json_response[:user]
+        expect(user_response[:email]).to eql @user_attributes[:email]
       end
 
       it 'should return a 201 response status' do
@@ -68,7 +70,8 @@ describe Api::V1::UsersController do
       end
 
       it 'renders the JSON representation of the updated user' do
-        expect(json_response[:email]).to eql 'newemail@marketplace.com'
+        user_response = json_response[:user]
+        expect(user_response[:email]).to eql 'newemail@marketplace.com'
       end
 
       it 'should return a 200 response status' do
