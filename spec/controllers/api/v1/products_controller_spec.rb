@@ -9,7 +9,8 @@ describe Api::V1::ProductsController do
     end
 
     it 'return the information of an article to a hash' do
-      expect(json_response[:title]).to eql @product.title
+      product_response = json_response[:product]
+      expect(product_response[:title]).to eql @product.title
     end
 
     it { should respond_with 200 }
@@ -40,7 +41,8 @@ describe Api::V1::ProductsController do
       end
 
       it 'renders the JSON representation of the created product' do
-        expect(json_response[:title]).to eql @product_attributes[:title]
+        product_response = json_response[:product]
+        expect(product_response[:title]).to eql @product_attributes[:title]
       end
 
       it { should respond_with 201 }
@@ -90,7 +92,8 @@ describe Api::V1::ProductsController do
       end
 
       it 'renders an JSON representation of the updated product' do
-        expect(json_response[:title]).to eql 'Updated title'
+        product_response = json_response[:product]
+        expect(product_response[:title]).to eql 'Updated title'
       end
 
       it { should respond_with 200 }
