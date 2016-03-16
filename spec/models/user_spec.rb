@@ -17,6 +17,7 @@ describe User do
 
   # Association
   it { should have_many :products }
+  it { should have_many :orders }
 
   describe "when email is not present" do
     before { @user.email = " " }
