@@ -2,6 +2,8 @@ class Product < ActiveRecord::Base
 
   # Association
   belongs_to :user
+  has_many :placements
+  has_many :orders, through: :placements
 
   # Validation
   validates :title, presence: true
