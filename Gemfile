@@ -41,6 +41,7 @@ gem 'simple_form'
 group :test do
   gem 'rspec-rails', '~> 2.14'
   gem 'shoulda-matchers', '2.5.0', require: false
+  gem 'email_spec'
 end
 
 group :development, :test do
