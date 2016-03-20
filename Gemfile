@@ -29,6 +29,7 @@ gem 'furatto', github: 'IcaliaLabs/furatto-rails'
 gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'kaminari'
+gem 'delayed_job_active_record'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
