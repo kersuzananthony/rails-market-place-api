@@ -28,6 +28,7 @@ gem 'sabisu_rails', github: 'IcaliaLabs/sabisu-rails'
 gem 'furatto', github: 'IcaliaLabs/furatto-rails'
 gem 'font-awesome-rails'
 gem 'simple_form'
+gem 'kaminari'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
