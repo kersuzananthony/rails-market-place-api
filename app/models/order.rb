@@ -10,6 +10,7 @@ class Order < ActiveRecord::Base
   # Validation
   validates :user_id, presence: true
   validates :total, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates_with EnoughProductsValidator
 
   def set_total!
     self.total = products.map(&:price).sum

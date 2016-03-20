@@ -45,4 +45,23 @@ describe Order do
     end
   end
 
+  describe '#valid?' do
+    before(:each) do
+      product_1 = FactoryGirl.create :product, quantity: 5, price: 50
+      product_2 = FactoryGirl.create :product, quantity: 10, price: 100
+
+      placement_1 = FactoryGirl.build :placement, product: product_1, quantity: 3
+      placement_2 = FactoryGirl.build :placement, product: product_2, quantity: 12
+
+      @order = FactoryGirl.build :order
+      @order.placements << placement_1
+      @order.placements << placement_2
+    end
+
+    it 'becomes invalid due to insufficient products' do
+      expect(@order).to_not be_valid
+    end
+
+  end
+
 end
